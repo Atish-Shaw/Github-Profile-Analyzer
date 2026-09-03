@@ -11,7 +11,7 @@ import SearchBar from "./components/searchbar";
 import ProfilePage from "./pages/ProfilePage";
 import FavouritesPage from "./pages/FavouritesPage";
 import ComparePage from "./pages/ComparePage";
-import Footer from "./components/footer";
+import Footer from "./components/profile/Footer";
 
 function App() {
   const [activeTab, setActiveTab] = useState("overview");

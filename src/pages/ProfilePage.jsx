@@ -8,7 +8,7 @@ import SummaryCard from "../components/profile/SummaryCard";
 import StatChips from "../components/profile/StatChips";
 import FunFactCard from "../components/profile/FunFactCard";
 import RepoTimelineChart from "../components/charts/RepoTimelineChart";
-import Tabs from "../components/tabs";
+import Tabs from "../components/Tabs";
 import Loading from "../components/Loading";
 import ErrorMessage from "../components/ErrorMessage";
 import { getRepoTimeline } from "../utils/getRepoTimeline";
