@@ -31,6 +31,7 @@ function App() {
         setUsername={setUsername}
         getUsers={getUsers}
         resetCompare={resetCompare}
+        error={error}
       />
 
       <div className="flex flex-1">
@@ -57,6 +58,8 @@ function App() {
                       setUsername={setUsername}
                       getUsers={getUsers}
                     />
+
+                    
 
                     <div className="flex justify-center gap-3 mt-8">
                       <button

@@ -47,10 +47,6 @@ function SummaryCard({ totalStars, totalForks, reposCount, githubUrl }) {
         </div>
       </div>
 
-      {/* Right side - Badge */}
-      <div className="w-28 h-28 rounded-full bg-gray-300 flex items-center justify-center text-black text-sm font-medium ml-6 shrink-0">
-        Badge rank
-      </div>
 
     </div>
   );

@@ -1,10 +1,9 @@
-
 import { Search, Menu } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import github_pic from "../../assets/github_pic.png";
 
-function Navbar({ user, username, setUsername, getUsers, resetCompare }) {
+function Navbar({ user, username, setUsername, getUsers, resetCompare, error }) {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -13,30 +12,36 @@ function Navbar({ user, username, setUsername, getUsers, resetCompare }) {
     : null;
 
   const [isOpen, setIsOpen] = useState(false);
-
+  const [showError, setShowError] = useState(false); // Added local state for the error toast
   const menuRef = useRef(null);
 
-  // Close menu when clicking outside
+  // Handle click outside for mobile menu
   useEffect(() => {
     function handleClickOutside(event) {
-      if (
-        menuRef.current &&
-        !menuRef.current.contains(event.target)
-      ) {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
         setIsOpen(false);
       }
     }
-
     document.addEventListener("mousedown", handleClickOutside);
-
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
-  // Get current page name
-  let pageName;
+  // Handle the error toast vanishing effect
+  useEffect(() => {
+    if (error) {
+      setShowError(true);
+      const timer = setTimeout(() => {
+        setShowError(false);
+      }, 3000); // 3000ms = 3 seconds before it vanishes
 
+      // Cleanup timeout if a new error comes in before the old one vanishes
+      return () => clearTimeout(timer); 
+    }
+  }, [error]);
+
+  let pageName;
   if (location.pathname === "/") {
     pageName = "Dashboard";
   } else if (location.pathname === "/favourites") {
@@ -52,25 +57,16 @@ function Navbar({ user, username, setUsername, getUsers, resetCompare }) {
 
       {/* LEFT SIDE */}
       <div className="relative" ref={menuRef}>
-
         <div className="flex justify-center items-center">
-
-          {/* Hamburger button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="px-2 py-2 border border-gray-600 rounded-md
                        hover:bg-[#181B22] hover:border-gray-400
                        cursor-pointer transition duration-200"
           >
-            <Menu
-              size={16}
-              color="#bdbdbd"
-              strokeWidth={1.5}
-              className="w-6"
-            />
+            <Menu size={16} color="#bdbdbd" strokeWidth={1.5} className="w-6" />
           </button>
 
-          {/* GitHub logo */}
           <div className="w-8 h-8 ml-3 rounded-full overflow-hidden bg-red-500">
             <img
               src={github_pic}
@@ -79,16 +75,11 @@ function Navbar({ user, username, setUsername, getUsers, resetCompare }) {
             />
           </div>
 
-          {/* Page name */}
           <div className="flex justify-center ml-3">
-            <h1 className="text-md">
-              {pageName}
-            </h1>
+            <h1 className="text-md">{pageName}</h1>
           </div>
-
         </div>
 
-        {/* Dropdown menu */}
         <div
           className={`absolute top-full left-0 mt-2 w-40
             bg-[#181B22] border border-gray-700 rounded-lg
@@ -100,8 +91,6 @@ function Navbar({ user, username, setUsername, getUsers, resetCompare }) {
                 : "opacity-0 scale-95 -translate-y-2 pointer-events-none"
             }`}
         >
-
-          {/* Home */}
           <button
             onClick={() => {
               resetCompare();
@@ -116,7 +105,6 @@ function Navbar({ user, username, setUsername, getUsers, resetCompare }) {
             Home
           </button>
 
-          {/* Favourites */}
           <button
             onClick={() => {
               navigate("/favourites");
@@ -130,7 +118,6 @@ function Navbar({ user, username, setUsername, getUsers, resetCompare }) {
             Favourites
           </button>
 
-          {/* Compare */}
           <button
             onClick={() => {
               navigate("/compare");
@@ -143,18 +130,15 @@ function Navbar({ user, username, setUsername, getUsers, resetCompare }) {
           >
             Compare
           </button>
-
         </div>
       </div>
 
       {/* SEARCH BAR */}
       {user && (
         <div className="relative">
-
           <Search
             size={16}
-            className="absolute mx-2 left-3 top-1/2
-                       -translate-y-1/2 text-gray-400"
+            className="absolute mx-2 left-3 top-1/2 -translate-y-1/2 text-gray-400"
           />
 
           <input
@@ -172,7 +156,13 @@ function Navbar({ user, username, setUsername, getUsers, resetCompare }) {
                        pl-9 pr-3 m-2 py-1
                        text-sm outline-none text-white"
           />
+        </div>
+      )}
 
+      {/* ERROR TOAST */}
+      {showError && error && (
+        <div className="fixed top-20 right-4 bg-[#1F0B0B] border border-red-500/40 text-red-400 px-4 py-3 rounded-lg shadow-xl text-sm z-[100] animate-in fade-in slide-in-from-top-2 duration-300">
+          {error}
         </div>
       )}
 
@@ -181,4 +171,3 @@ function Navbar({ user, username, setUsername, getUsers, resetCompare }) {
 }
 
 export default Navbar;
-

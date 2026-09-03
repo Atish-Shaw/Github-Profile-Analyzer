@@ -40,9 +40,10 @@ export function useGithubProfile() {
       navigate(`/profile/${searchQuery}`);
 
     } catch (err) {
-      setUser("");
-      setRepo([]);
       setError(err.message);
+      setTimeout(() => {
+        setError("");
+      }, 1000)
     } finally {
       setLoading(false);
     }
