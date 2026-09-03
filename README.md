@@ -1,16 +1,44 @@
-# React + Vite
+# GitHub Analyzer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-featured GitHub profile analyzer built with React — search any GitHub username to view profile stats, repository insights, language breakdowns, and compare two profiles side by side.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- 🔍 **Search** any GitHub username to view their full profile
+- 📊 **Overview Dashboard** — total stars, forks, top language, member-since date
+- 🥧 **Language Breakdown** — pie chart of languages used across repositories
+- ⭐ **Top Repositories Chart** — bar chart of most-starred repos
+- 📅 **Repo Timeline** — bar chart of repositories created per year
+- 🎉 **Fun Facts** — languages known, top language share, most forked repo, description coverage
+- 📁 **Repositories Table** — sortable, paginated list with language color-coding
+- ⚖️ **Compare Profiles** — side-by-side comparison of two GitHub users (followers, repos, forks, top languages, most-starred repo, and an overall "winner" summary)
+- ❤️ **Favourites** — save profiles for quick access later, persisted with `localStorage`
+- 🌐 **Client-side routing** with React Router (shareable URLs, working browser back/forward, refresh-safe)
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React** + **Vite**
+- **Tailwind CSS** for styling
+- **React Router** for navigation
+- **Recharts** for data visualization
+- **Lucide React** for icons
+- **GitHub REST API** for data
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Prerequisites
+
+- Node.js installed
+- A [GitHub Personal Access Token](https://github.com/settings/tokens) (for higher API rate limits)
+
+### Installation
+
+```bash
+git clone https://github.com/Atish-Shaw/Github-Profile-Analyzer.git
+cd Github-Profile-Analyzer
+npm install
+```
+
+### Environment Setup
+
+Copy `.env.example` to a new file named `.env`, and add your GitHub token:
