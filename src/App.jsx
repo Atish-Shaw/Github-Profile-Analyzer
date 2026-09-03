@@ -42,7 +42,7 @@ function App() {
           />
         )}
 
-        <div className="flex-1 flex flex-col items-center mt-20 gap-4 p-6">
+        <div className="flex-1 flex flex-col items-center gap-4 p-6">
 
           <Routes>
             <Route

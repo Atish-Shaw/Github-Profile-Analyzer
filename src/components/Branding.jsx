@@ -4,7 +4,7 @@ function Branding() {
       Added border-b, a subtle border-white/20 color, pb-6 for spacing, 
       and px-2 so the line extends just a bit past the text.
     */
-    <div className="relative inline-block mt-16 border-b border-white/20 pb-6 px-2">
+    <div className="relative inline-block mt-32 border-b border-white/20 pb-6 px-2">
       <h1 className="font-pixel text-7xl flex items-center gap-10 text-white">
         <span>GitHub</span>
         
