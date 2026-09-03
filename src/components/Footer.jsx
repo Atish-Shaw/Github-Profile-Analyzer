@@ -5,7 +5,7 @@ function Footer() {
       <div className="flex items-center gap-4">
 
         <a
-          href="https://github.com/atish-code"
+          href="https://github.com/Atish-Shaw"
           target="_blank"
           rel="noreferrer"
           className="flex items-center gap-1 hover:text-white transition-colors"
